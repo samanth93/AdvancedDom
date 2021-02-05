@@ -74,4 +74,6 @@ theHeader.append(message);
 // Delete an HTML element
 document
   .querySelector(".btn--close-cookie")
-  .addEventListener("click", () => message.remove());
+  // this is latest
+  // .addEventListener("click", () => message.remove());
+  .addEventListener("click", () => message.parentElement.removeChild(message));
