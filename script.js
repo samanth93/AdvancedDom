@@ -31,13 +31,13 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
-
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Selecting elements
 console.log(document);
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
-// selector means class and a "."
+// selector means class and a "." or id and "#"
 const theHeader = document.querySelector(".header");
 // This will give node list not htmlcollection
 const allSections = document.querySelectorAll(".section");
@@ -77,3 +77,68 @@ document
   // this is latest
   // .addEventListener("click", () => message.remove());
   .addEventListener("click", () => message.parentElement.removeChild(message));
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// styles
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Attributes, in js all the properties of a tag are called attributes, id, class, src, alt etc.,.
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = "Beautiful minimalist logo";
+
+// Non standard
+// it wont work, the getAttribute should be used
+console.log(logo.designer);
+console.log(logo.getAttribute("designer"));
+// inspect and check
+logo.setAttribute("Company", "JVS");
+
+//  Absolute url
+console.log(logo.src);
+// Relative url
+console.log(logo.getAttribute("src"));
+
+// Data Attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add("c", "j");
+logo.classList.remove("c", "j");
+logo.classList.toggle("c");
+logo.classList.contains("c");
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Scroll functionality
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const sectionOne = document.querySelector("#section--1");
+btnScrollTo.addEventListener("click", function (e) {
+  // to get coordinates
+  const s1coords = sectionOne.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect);
+  console.log("Current Scroll X/Y", window.pageXOffset, window.pageYOffset);
+  // this alone wont work
+  // window.scrollTo(s1coords.left, s1coords.top);
+  // so
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // This works
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+  // new way of scrolling
+  sectionOne.scrollIntoView({ behavior: "smooth" });
+});
