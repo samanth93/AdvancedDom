@@ -37,7 +37,7 @@ console.log(document);
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
-// selector means class and a "." or id and "#"
+// selector means class and a "." or id and "#" or tag name
 const theHeader = document.querySelector(".header");
 // This will give node list not htmlcollection
 const allSections = document.querySelectorAll(".section");
@@ -142,3 +142,10 @@ btnScrollTo.addEventListener("click", function (e) {
   // new way of scrolling
   sectionOne.scrollIntoView({ behavior: "smooth" });
 });
+// Events and Eventhandlers, refer MDN docs for more event handlers
+const h1 = document.querySelector("h1");
+const alertFun = () => {
+  alert("hi");
+  h1.removeEventListener("mouseenter", alertFun);
+};
+h1.addEventListener("mouseenter", alertFun);
