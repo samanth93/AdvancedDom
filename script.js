@@ -125,13 +125,23 @@ document
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // styles
 message.style.backgroundColor = "#37383d";
-message.style.width = "120%";
+message.style.width = "100%";
 
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
 
 document.documentElement.style.setProperty("--color-primary", "orangered");
 
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  console.log(clicked);
+  clicked.classList.add("operations__tab--active");
+  console.log(e.target);
+});
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Attributes, in js all the properties of a tag are called attributes, id, class, src, alt etc.,.
 const logo = document.querySelector(".nav__logo");
@@ -188,11 +198,39 @@ h1.addEventListener("mouseenter", alertFun);
 //   this.style.backgroundColor = randomColor();
 // });
 
-// DOM traversing
+// DOM traversing downwards
 
 console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes);
 // h1.children[0].innerText = "helo";
 console.log(h1.children);
 console.log(h1);
 console.log(h1.firstElementChild);
 console.log(h1.lastElementChild);
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// DOM traversing upwards
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+console.log(h1.closest(".header"));
+// find the parent , which is closest header element for const h1
+console.log(h1.closest(".header"));
+// find the parent , which is closest h1 element for const h1
+console.log(h1.closest("h1"));
+
+// Going sideways, for some reason in js we can only select direct siblings
+console.log(h1.previousElementSibling);
+console.log(h1.previousSibling);
+// these will give nodes
+console.log(h1.nextElementSibling);
+console.log(h1.nextSibling);
+console.log(h1.parentElement.children);
+console.log(h1.parentElement.childNodes);
+
+[...h1.parentElement.children].forEach(function (el) {
+  console.log(el === h1);
+  if (el !== h1) {
+    el.style.color = "purple";
+  }
+});
