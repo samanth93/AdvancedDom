@@ -56,12 +56,26 @@ btnScrollTo.addEventListener("click", function (e) {
   // new way of scrolling
   sectionOne.scrollIntoView({ behavior: "smooth" });
 });
-document.querySelectorAll(".nav__link").forEach(function (el) {
-  console.log(el);
-  el.addEventListener("click", function () {
-    sectionOne.scrollIntoView({ behavior: "smooth" });
-  });
+// Below is not a good way we can use event delegation
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     console.log(this);
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("nav__link")) {
+    console.log(e.target.getAttribute("href"));
+    document
+      .querySelector(e.target.getAttribute("href"))
+      .scrollIntoView({ behavior: "smooth" });
+  }
 });
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Selecting elements
 console.log(document);
@@ -157,19 +171,28 @@ const alertFun = () => {
 };
 h1.addEventListener("mouseenter", alertFun);
 
-const randomInt = (min, max) => Math.floor(Math.random() * max);
-const randomColor = () => {
-  return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-};
-document.querySelector(".nav__item").addEventListener("click", function (e) {
-  console.log(3);
-  this.style.backgroundColor = randomColor();
-});
-document.querySelector(".nav__links").addEventListener("click", function (e) {
-  console.log(2);
-  this.style.backgroundColor = randomColor();
-});
-document.querySelector(".nav").addEventListener("click", function (e) {
-  console.log(1);
-  this.style.backgroundColor = randomColor();
-});
+// const randomInt = (min, max) => Math.floor(Math.random() * max);
+// const randomColor = () => {
+//   return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// };
+// document.querySelector(".nav__item").addEventListener("click", function (e) {
+//   console.log(3);
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector(".nav__links").addEventListener("click", function (e) {
+//   console.log(2);
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector(".nav").addEventListener("click", function (e) {
+//   console.log(1);
+//   this.style.backgroundColor = randomColor();
+// });
+
+// DOM traversing
+
+console.log(h1.querySelectorAll(".highlight"));
+// h1.children[0].innerText = "helo";
+console.log(h1.children);
+console.log(h1);
+console.log(h1.firstElementChild);
+console.log(h1.lastElementChild);
