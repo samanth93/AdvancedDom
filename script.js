@@ -31,6 +31,37 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+// Scroll functionality
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const sectionOne = document.querySelector("#section--1");
+btnScrollTo.addEventListener("click", function (e) {
+  // to get coordinates
+  const s1coords = sectionOne.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect);
+  console.log("Current Scroll X/Y", window.pageXOffset, window.pageYOffset);
+  // this alone wont work
+  // window.scrollTo(s1coords.left, s1coords.top);
+  // so
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // This works
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+  // new way of scrolling
+  sectionOne.scrollIntoView({ behavior: "smooth" });
+});
+document.querySelectorAll(".nav__link").forEach(function (el) {
+  console.log(el);
+  el.addEventListener("click", function () {
+    sectionOne.scrollIntoView({ behavior: "smooth" });
+  });
+});
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Selecting elements
 console.log(document);
@@ -117,35 +148,28 @@ logo.classList.remove("c", "j");
 logo.classList.toggle("c");
 logo.classList.contains("c");
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// Scroll functionality
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const sectionOne = document.querySelector("#section--1");
-btnScrollTo.addEventListener("click", function (e) {
-  // to get coordinates
-  const s1coords = sectionOne.getBoundingClientRect();
-  console.log(s1coords);
-  console.log(e.target.getBoundingClientRect);
-  console.log("Current Scroll X/Y", window.pageXOffset, window.pageYOffset);
-  // this alone wont work
-  // window.scrollTo(s1coords.left, s1coords.top);
-  // so
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-  // This works
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: "smooth",
-  // });
-  // new way of scrolling
-  sectionOne.scrollIntoView({ behavior: "smooth" });
-});
+
 // Events and Eventhandlers, refer MDN docs for more event handlers
 const h1 = document.querySelector("h1");
 const alertFun = () => {
-  alert("hi");
+  // alert("hi");
   h1.removeEventListener("mouseenter", alertFun);
 };
 h1.addEventListener("mouseenter", alertFun);
+
+const randomInt = (min, max) => Math.floor(Math.random() * max);
+const randomColor = () => {
+  return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+};
+document.querySelector(".nav__item").addEventListener("click", function (e) {
+  console.log(3);
+  this.style.backgroundColor = randomColor();
+});
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  console.log(2);
+  this.style.backgroundColor = randomColor();
+});
+document.querySelector(".nav").addEventListener("click", function (e) {
+  console.log(1);
+  this.style.backgroundColor = randomColor();
+});
