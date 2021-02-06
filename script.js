@@ -136,11 +136,14 @@ const tabs = document.querySelectorAll(".operations__tab");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const tabsContent = document.querySelectorAll(".operations__content");
 
+// Event delegation vs foreach
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
   console.log(clicked);
-  clicked.classList.add("operations__tab--active");
   console.log(e.target);
+  if (!clicked) return;
+  tabs.forEach((el) => el.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
 });
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Attributes, in js all the properties of a tag are called attributes, id, class, src, alt etc.,.
