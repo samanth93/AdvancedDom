@@ -7,6 +7,7 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const nav = document.querySelector(".nav");
 
 const openModal = function () {
   modal.classList.remove("hidden");
@@ -75,7 +76,44 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
       .scrollIntoView({ behavior: "smooth" });
   }
 });
-
+// Menu fade navigation
+// mouse over bubbles
+const handleMouseHover = function (e, opacity) {
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+    siblings.forEach(function (el) {
+      if (el !== link) {
+        el.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+};
+nav.addEventListener("mouseover", function (e) {
+  handleMouseHover(e, 0.5);
+});
+nav.addEventListener("mouseout", function (e) {
+  handleMouseHover(e, 1);
+});
+// const handleMouseHover = function (e) {
+//   if (e.target.classList.contains("nav__link")) {
+//     const link = e.target;
+//     const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+//     const logo = link.closest(".nav").querySelector("img");
+//     siblings.forEach(function (el) {
+//       console.log(el);
+//       console.log(link);
+//       if (el !== link) {
+//         el.style.opacity = this;
+//       }
+//     });
+//     logo.style.opacity = this;
+//   }
+// };
+// nav.addEventListener("mouseover", handleMouseHover.bind(0.5));
+// nav.addEventListener("mouseout", handleMouseHover.bind(1));
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Selecting elements
 console.log(document);
@@ -139,11 +177,24 @@ const tabsContent = document.querySelectorAll(".operations__content");
 // Event delegation vs foreach
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
+  const operationTab = `.operations__content--${clicked.getAttribute(
+    "data-tab"
+  )}`;
+  console.log(operationTab);
+  console.log(clicked.getAttribute("data-tab"));
   console.log(clicked);
   console.log(e.target);
   if (!clicked) return;
   tabs.forEach((el) => el.classList.remove("operations__tab--active"));
   clicked.classList.add("operations__tab--active");
+
+  // Activate the content area
+  tabsContent.forEach((el) =>
+    el.classList.remove("operations__content--active")
+  );
+  document
+    .querySelector(operationTab)
+    .classList.add("operations__content--active");
 });
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Attributes, in js all the properties of a tag are called attributes, id, class, src, alt etc.,.
