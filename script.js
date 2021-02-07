@@ -114,6 +114,14 @@ nav.addEventListener("mouseout", function (e) {
 // };
 // nav.addEventListener("mouseover", handleMouseHover.bind(0.5));
 // nav.addEventListener("mouseout", handleMouseHover.bind(1));
+console.log(sectionOne.getBoundingClientRect().top);
+window.addEventListener("scroll", function () {
+  if (window.scrollY > sectionOne.getBoundingClientRect().top) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+});
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Selecting elements
 console.log(document);
