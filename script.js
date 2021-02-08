@@ -311,3 +311,5 @@ console.log(sam);
 console.log(sam.calcAge());
 console.log(rajiv.calcAge());
 console.log(Person.prototype);
+console.log(sam.__proto__ === Person.prototype);
+console.log(Person.prototype.isPrototypeOf(sam));
