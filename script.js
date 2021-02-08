@@ -296,3 +296,18 @@ console.log(h1.parentElement.childNodes);
     el.style.color = "purple";
   }
 });
+
+const Person = function (firstName, dob) {
+  console.log(this);
+  this.firstName = firstName;
+  this.dob = dob;
+};
+Person.prototype.calcAge = function () {
+  console.log(2021 - this.dob);
+};
+const sam = new Person("Samanth", 1993);
+const rajiv = new Person("Rajiv", 1997);
+console.log(sam);
+console.log(sam.calcAge());
+console.log(rajiv.calcAge());
+console.log(Person.prototype);
