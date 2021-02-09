@@ -319,3 +319,9 @@ console.log(sam.__proto__);
 console.log(sam.__proto__.__proto__);
 // This is called prototype chaining
 console.log(sam.__proto__.__proto__.__proto__);
+//  But not a good way to change system objects
+Array.prototype.getUnique = function () {
+  return [...new Set(this)];
+};
+const arr = [1, 2, 3, 4, 5, 6, 66, 6, 4, 3, 2, 1];
+console.log(arr.getUnique());
