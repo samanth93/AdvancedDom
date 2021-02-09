@@ -325,3 +325,5 @@ Array.prototype.getUnique = function () {
 };
 const arr = [1, 2, 3, 4, 5, 6, 66, 6, 4, 3, 2, 1];
 console.log(arr.getUnique());
+// open and check __proto you will the chain(Beauty!!)
+console.dir(h1);
