@@ -386,3 +386,29 @@ thirdMethod.init("sam", "sid");
 console.log(thirdMethod.showFullName());
 console.log();
 console.log(thirdMethod.__proto__ == PersonProto);
+// #############################################
+// Inheritance in js
+const Company = function (companyName, location) {
+  this.companyName = companyName;
+  this.location = location;
+};
+Company.prototype.getLocation = function () {
+  return this.location;
+};
+// In the below code this represents object which is calling this function, which is emp(initially it is empty obj, created by new keyword)
+const Employee = function (companyName, location, firstName, lastName) {
+  Company.call(this, companyName, location);
+  this.firstName = firstName;
+  this.lastName = lastName;
+};
+// Linking prototypes for prototype chaining
+Employee.prototype = Object.create(Company.prototype);
+Employee.prototype.getFullName = function () {
+  return this.firstName;
+};
+const emp = new Employee("flsmidth", "chennai", "samanth", "sidhabathuni");
+console.log(emp.getFullName());
+console.log(emp.getLocation());
+console.log(emp instanceof Employee);
+console.log(emp instanceof Company);
+console.log(emp instanceof Object);
