@@ -329,6 +329,11 @@ console.log(arr.getUnique());
 console.dir(h1);
 console.dir(document);
 // ################################################################################
+// class expression
+// const VehicleClass = class{
+
+// }
+//class declaration
 class VehicleClass {
   constructor(name, model) {
     this.name = name;
@@ -342,3 +347,4 @@ class VehicleClass {
 const civic = new VehicleClass("Honda Civic", "Sedan");
 console.log(civic);
 console.log(civic.getObjString());
+console.log(civic.__proto__ == VehicleClass.prototype);
