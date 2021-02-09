@@ -339,12 +339,50 @@ class VehicleClass {
     this.name = name;
     this.model = model;
   }
-  // If we add functions here it will be added to protytype property
+  // If we add functions here it will be added to protytype property, instance methds
   getObjString() {
     return `${this.name} ${this.model}`;
+  }
+  get getName() {
+    return this.name;
+  }
+  // static methods
+  static hey() {
+    console.log("HEy there!!");
+    console.log(this);
   }
 }
 const civic = new VehicleClass("Honda Civic", "Sedan");
 console.log(civic);
 console.log(civic.getObjString());
 console.log(civic.__proto__ == VehicleClass.prototype);
+console.log(civic.getName);
+VehicleClass.hey();
+// console.log(civic.hey());
+
+// for function baed static functions
+Person.heyTwo = function () {
+  console.log(
+    "This is function based statc method, not inherited to any objects"
+  );
+  console.log(this);
+};
+Person.heyTwo();
+// #############################################
+// Implementing Object.create, it is used to attach the prototype propery explicitly
+// Basically below function is prototype function
+const PersonProto = {
+  init(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  },
+  showFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+};
+
+const thirdMethod = Object.create(PersonProto);
+thirdMethod.init("sam", "sid");
+console.log(thirdMethod.showFullName());
+console.log();
+console.log(thirdMethod.__proto__ == PersonProto);
