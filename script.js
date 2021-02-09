@@ -412,3 +412,35 @@ console.log(emp.getLocation());
 console.log(emp instanceof Employee);
 console.log(emp instanceof Company);
 console.log(emp instanceof Object);
+// Inheritence using js class ES6
+class CompanyClass {
+  constructor(companyName, location) {
+    this.companyName = companyName;
+    this.location = location;
+  }
+  getLocation() {
+    return this.location;
+  }
+}
+// inthe below code super keyword should be just below the class declaration, because it has define the this keyword
+class EmployeeClass extends CompanyClass {
+  constructor(companyName, location, firstName, lastName) {
+    super(companyName, location);
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  getFullName() {
+    return this.firstName;
+  }
+}
+const emp2 = new EmployeeClass(
+  "flsmidth",
+  "chennai",
+  "samanth",
+  "sidhabathuni"
+);
+console.log(emp2.getFullName());
+console.log(emp2.getLocation());
+console.log(emp2 instanceof EmployeeClass);
+console.log(emp2 instanceof CompanyClass);
+console.log(emp2 instanceof Object);
