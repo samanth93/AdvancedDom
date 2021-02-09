@@ -313,3 +313,9 @@ console.log(rajiv.calcAge());
 console.log(Person.prototype);
 console.log(sam.__proto__ === Person.prototype);
 console.log(Person.prototype.isPrototypeOf(sam));
+// This below function will give prototype of sam, which is prototype propert of Person.prototype
+console.log(sam.__proto__);
+// Main object
+console.log(sam.__proto__.__proto__);
+// This is called prototype chaining
+console.log(sam.__proto__.__proto__.__proto__);
