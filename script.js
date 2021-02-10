@@ -422,6 +422,7 @@ class CompanyClass {
     return this.location;
   }
 }
+// #############################################
 // inthe below code super keyword should be just below the class declaration, because it has define the this keyword
 class EmployeeClass extends CompanyClass {
   constructor(companyName, location, firstName, lastName) {
@@ -444,3 +445,16 @@ console.log(emp2.getLocation());
 console.log(emp2 instanceof EmployeeClass);
 console.log(emp2 instanceof CompanyClass);
 console.log(emp2 instanceof Object);
+// #############################################
+// Inheritence using Object.create(basically it is used to attach prototype to the object)
+const someRandomPrototype = {
+  funcOne(valueOne, valueTwo) {
+    this.valueOne = valueOne;
+    this.valueTwo = valueTwo;
+  },
+  funcTwo() {
+    return "This is function two";
+  },
+};
+const someRandomObject = Object.create(someRandomPrototype);
+const someRandomObjectTwo = Object.create(someRandomObject);
