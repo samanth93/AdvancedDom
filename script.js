@@ -458,3 +458,13 @@ const someRandomPrototype = {
 };
 const someRandomObject = Object.create(someRandomPrototype);
 const someRandomObjectTwo = Object.create(someRandomObject);
+// #############################################
+// AJAX call
+const req = new XMLHttpRequest();
+console.log(req);
+req.open("GET", "https://restcountries.eu/rest/v2/name/portugal");
+req.send();
+req.addEventListener("load", function () {
+  const data = JSON.parse(this.responseText);
+  console.log(data);
+});
