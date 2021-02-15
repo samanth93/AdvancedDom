@@ -489,6 +489,17 @@ const getNeighbouringCountryData = function (country) {
   req.addEventListener("load", function () {
     const [data] = JSON.parse(this.responseText);
     renderCountry(data);
+    const [code] = data.borders;
+    console.log(code);
+    const reqTwo = new XMLHttpRequest();
+    reqTwo.open("GET", `https://restcountries.eu/rest/v2/alpha/${code}`);
+    reqTwo.send();
+    reqTwo.addEventListener("load", function () {
+      console.log(this.responseText);
+      const data = JSON.parse(this.responseText);
+      console.log(data.name);
+      renderCountry(data);
+    });
   });
 };
 getNeighbouringCountryData("portugal");
