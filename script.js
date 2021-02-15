@@ -8,6 +8,7 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const nav = document.querySelector(".nav");
+// const exampleDiv = document.querySelector(".example-div");
 
 const openModal = function () {
   modal.classList.remove("hidden");
@@ -460,11 +461,17 @@ const someRandomObject = Object.create(someRandomPrototype);
 const someRandomObjectTwo = Object.create(someRandomObject);
 // #############################################
 // AJAX call
-const req = new XMLHttpRequest();
-console.log(req);
-req.open("GET", "https://restcountries.eu/rest/v2/name/portugal");
-req.send();
-req.addEventListener("load", function () {
-  const data = JSON.parse(this.responseText);
-  console.log(data);
-});
+const getCountryData = function (country) {
+  const req = new XMLHttpRequest();
+  console.log(req);
+  req.open("GET", `https://restcountries.eu/rest/v2/name/${country}`);
+  req.send();
+  req.addEventListener("load", function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+    const html = `<div>${data.name}<div>`;
+    nav.insertAdjacentHTML("beforeend", html);
+  });
+};
+getCountryData("india");
+getCountryData("portugal");
