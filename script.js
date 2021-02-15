@@ -473,5 +473,22 @@ const getCountryData = function (country) {
     nav.insertAdjacentHTML("beforeend", html);
   });
 };
-getCountryData("india");
-getCountryData("portugal");
+// getCountryData("india");
+// getCountryData("portugal");
+// #############################################
+//Sequence of AJAX call
+const renderCountry = function (data) {
+  const html = `<div>${data.name}<div>`;
+  nav.insertAdjacentHTML("beforeend", html);
+};
+const getNeighbouringCountryData = function (country) {
+  const req = new XMLHttpRequest();
+  console.log(req);
+  req.open("GET", `https://restcountries.eu/rest/v2/name/${country}`);
+  req.send();
+  req.addEventListener("load", function () {
+    const [data] = JSON.parse(this.responseText);
+    renderCountry(data);
+  });
+};
+getNeighbouringCountryData("portugal");
